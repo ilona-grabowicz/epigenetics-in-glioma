@@ -1,5 +1,3 @@
-# Author: Ilona E. Grabowicz
-# Date: 2019-2020
 from matplotlib_venn import venn3
 from matplotlib import pyplot as plt
 from numpy import random
@@ -25,12 +23,41 @@ def compare(fdr, what_to_compare):
 	if what_to_compare=='grade23_grade4':
 		plt.title('DA vs GB/PG', fontsize=18)
 	if what_to_compare=='grade1_grade4':
-		plt.title(' ', fontsize=18)
+		plt.title('PA vs GB/PG', fontsize=18)
 	if what_to_compare=='grade1_grade23':
 		plt.title('PA vs DA', fontsize=18)
+	# H3K4me3 color:
+	out.get_patch_by_id('001').set_color('#DB8D40')
+	out.get_patch_by_id('001').set_alpha(0.5)
+	# H3K27ac color:
+	out.get_patch_by_id('010').set_color('#3B8EDB')
+	out.get_patch_by_id('010').set_alpha(0.5)
+	# Gene expression color:
+	out.get_patch_by_id('100').set_color('#2B9900')
+	out.get_patch_by_id('100').set_alpha(0.5)
+	#Intercolors:
+	out.get_patch_by_id('110').set_color('#3B7C79')
+	out.get_patch_by_id('110').set_alpha(0.5)
+	if what_to_compare=='grade1_grade4':
+		out.get_patch_by_id('011').set_color('#AA938D')
+		out.get_patch_by_id('011').set_alpha(0.5)
+	out.get_patch_by_id('101').set_color('#897840')
+	out.get_patch_by_id('101').set_alpha(0.5)
+	
+	# Edges color :
+	if what_to_compare=='grade1_grade4':
+		out.get_patch_by_id('111').set_edgecolor('none')
+		out.get_patch_by_id('011').set_edgecolor('none')
+	out.get_patch_by_id('001').set_edgecolor('none')
+	out.get_patch_by_id('010').set_edgecolor('none')
+	out.get_patch_by_id('100').set_edgecolor('none')
+	out.get_patch_by_id('110').set_edgecolor('none')
+	
+
+	
 	print(DE_gradeX_gradeY)
 	plt.tight_layout()
-	plt.savefig('venn_fdr_'+what_to_compare+'_'+str(fdr)+'.png')
+	plt.savefig('venn_fdr_'+what_to_compare+'_'+str(fdr)+'.svg') ### svg  i test
 	plt.show()
 	
 	
